@@ -24,7 +24,6 @@ Sub Supply_Suggestions()
     Dim i As Integer
     Dim i2 As Integer
     Dim i3 As Integer
-    'creating this counter because I'm too lazy to configure the array C:H21 correctly
     'sometimes the varHierarchy goes past the last room type
     Dim i4 As Integer
     Dim intSUNColumn As Integer
