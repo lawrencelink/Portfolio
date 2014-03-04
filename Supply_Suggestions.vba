@@ -128,6 +128,7 @@ Sub Supply_Suggestions()
                             i4 = i4 + 1
                             
                         End If
+                        
                     intSuggestedSupply = Sheets("SUN").Range(Cells(intRow, intSUNColumn), Cells(intRow, intSUNColumn)).Value + intDistribution
                     intNONSupply = Sheets("SUN").Range(Cells(intRow, intSUNColumn + 2), Cells(intRow, intSUNColumn + 2)).Value
                     intSVNSupply = Sheets("SUN").Range(Cells(intRow, intSUNColumn + 3), Cells(intRow, intSUNColumn + 3)).Value + intDistribution
@@ -174,7 +175,7 @@ Sub Supply_Suggestions()
                     'intDistribution is set up here
                     intDistribution = WorksheetFunction.Max(varAvailability) - Round(WorksheetFunction.Average(varAvailability))
                     intIndex = Application.Match(WorksheetFunction.Max(varAvailability), varAvailability, 0)
-                    '''''''MsgBox WorksheetFunction.Max(varAvailability)
+                    
                     'Make sure that the intTotalSupply is not reduced below the intFITSupply
                     If Abs(intSupplyVariance) <= intDistribution Then
                         'intDistribution = Abs(intSupplyVariance)
@@ -206,18 +207,22 @@ Sub Supply_Suggestions()
                         intCurrentTallyAVL = varHierarchy(intIndex, 6) - intDistribution
                         
                         If Range(Cells(intRow, intSuggestedColumn), Cells(intRow, intSuggestedColumn)).Value = 0 Then
+                        
                             'Enter the suggested supply in the cell on the spreadsheet
                             Range(Cells(intRow, intSuggestedColumn), Cells(intRow, intSuggestedColumn)).Value = "(" & intSuggestedSupply & "," & intNONSupply & "," & intSVNSupply & ")"
                             
                         Else
+                        
                             'Enter the suggested supply in the cell on the spreadsheet
                             Range(Cells(intRow, intSuggestedColumn), Cells(intRow, intSuggestedColumn)).Value = "(" & intCurrentTally & "," & intCurrentTallyNON & "," & intCurrentTallyAVL & ")"
+                            
                         End If
                         
                         'Decrease the supply for that room type
                         varHierarchy(intIndex, 3) = varHierarchy(intIndex, 3) - intDistribution
                         varHierarchy(intIndex, 5) = varHierarchy(intIndex, 5)
                         varHierarchy(intIndex, 6) = varHierarchy(intIndex, 6) - intDistribution
+                        
                         'Decrease the availability for that room type
                         varAvailability(intIndex) = varAvailability(intIndex) - intDistribution
                            
@@ -230,5 +235,4 @@ Sub Supply_Suggestions()
         
     Next intRow
     
-    ''''Sheets("TEMP").Visible = False
 End Sub
