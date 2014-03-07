@@ -6,7 +6,7 @@ Option Explicit
 '*********************************************************************************************
 Public Sub Open_SUN_File()
     Dim strWorkBookName As String
-    strWorkBookName = "MIXED AVAIL GRAPH"
+    strWorkBookName = ActiveWorkbook.Name
     Dim intResponse As Integer
     Dim strFileName As String
     Dim strFileClose
